@@ -79,7 +79,6 @@ revealOptions:
 <div style="display:table-cell; width:30%; text-align: center; vertical-align: middle"><img style="width:300px; height:auto" src="images/tracecompass_contributors.png"/></div>
 <br/>
 </center>
-
 ---
 # Trace Compass Overview
 
@@ -133,7 +132,6 @@ revealOptions:
 <div style="display:table-cell; width:50%; text-align: center; vertical-align: middle"><span>**Highlighting**</span></div>
 </p>
 </center>
-
 ----
 ## Common Features
 
@@ -802,7 +800,6 @@ protected Iterable<IAnalysisModule> getDependentAnalyses() {
 
 <center><img src="images/ProjectExplorerWithOutput.png" width="30%" height="30%"/></center>
 
-
 ---
 # Exercise: Create an output
 ## 
@@ -973,7 +970,7 @@ if (value2 instanceof Integer) {
 long getStartTime();
 long getEndTime();
 ~~~
-	
+
 - Provides the quark and state value
 
 ~~~java
@@ -1147,7 +1144,7 @@ content_class: smaller
 # Exercise Attribute Tree
 ##
 
- 
+
 ~~~
 	  |- Requester
 	        |- <requester> -> State Value
@@ -1185,7 +1182,7 @@ content_class: smaller
 # Exercise Attribute Tree
 ##
 
- 
+
 ~~~
 	  |- Requester
 	        |- <requester> -> State Value
@@ -1197,7 +1194,6 @@ content_class: smaller
 - State values:
 	- 0=INITIALIZING
 	- 1=PROCESSING
-
 
 ---
 # Exercise Review
@@ -1454,7 +1450,6 @@ long getTime();
 long getDuration();
 ~~~
 
-
 ---
 # Presentation Provider
 ## 
@@ -1521,7 +1516,7 @@ content_class: smaller
 - Typically views extend abstract classes
 	- `AbstractTimeGraphView`
 	- `AbstractStateSystemTimeGraphView`
-	- `BaseDataProviderTimeGraphView'
+	- `BaseDataProviderTimeGraphView`
 - Use `AbstractTimeGraphView` to populate each row at a time
 	- Loads only visible rows
 	- Works with or without state systems
@@ -1738,13 +1733,34 @@ protected List<IMarkerEvent> getViewMarkerList(
 ~~~
 
 ---
-# TODO Data Provider API
+# Data Provider API
 ##
 
-- TODO
- 
+- Starting in Trace Compass 3.3, the **Core** and **UI** are being decoupled  with the data provider interface. This interface aims to provide a  standard data model for different types of views.
+- The purpose is to be able to change the **UI** technology,
+- Request-response model. The **UI** needs to query the back-end
+- Back-end is stateless
+
+---
+
+## Query
+
+When querying a provider, the response is encapsulated in a `TmfModelResponse` that has a status and a model.
+
+The status has the following possible values:
+
+* `CANCELLED` if the query was cancelled by the progress monitor
+* `FAILED` if an error occurred inside the data provider
+* `RUNNING` if the response was returned before the underlying  analysis was completed, and querying the provider again with the same  parameters can return a different model.
+* `COMPLETED` if the underlying analysis is finished and we do not expect a different response for the query parameters.
+
+-----
+
+
+
 ---
 # Module 6
+
 ## Timing Analysis
 
 ---
@@ -1817,7 +1833,6 @@ protected List<IMarkerEvent> getViewMarkerList(
 </div>
 <br/>
 </center>
-
 ---
 # Timing Analysis
 ## Using states
@@ -1860,7 +1875,6 @@ to the SWT implementation of the virtual table in Linux
 
 - This will likely be fixed in the near future versions of Trace Compass.
 
-
 ---
 # Timing Analysis API
 ## AbstractSegmentStoreAnalysisModule
@@ -1894,7 +1908,6 @@ to the SWT implementation of the virtual table in Linux
 ---
 # Module 7
 ## Timing Analysis Views
-
 
 ---
 # Timing Analysis Views
@@ -2188,7 +2201,6 @@ content_class: smaller
 <div style="display:table-cell; width:50%;"><img style="width:300px; height:auto" src="images/xml/tracecompass_timing_analysis.png"/></div>
 <div style="display:table-cell; width:50%; text-align: center; vertical-align: middle"><span>**Timing analysis** on-the-fly</span></div>
 </center>
-
 ---
 # How do we use an XML analysis?
 ##
@@ -2203,7 +2215,6 @@ content_class: smaller
 <div style="display:table-cell; width:50%; text-align: center; vertical-align: middle"><span>**Analyze** result in Trace Compass</span></div>
 <br/>
 </center>
-
 ---
 # Exercise: Importing the XML analysis
 ##
